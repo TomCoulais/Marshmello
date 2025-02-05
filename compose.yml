@@ -19,10 +19,11 @@ services:
       - "global_reverse_proxy"
     volumes:
       - ./:/home/node/app
+      - /var/run/docker.sock:/var/run/docker.sock
     working_dir: /home/node/app
 
   database:
-    build: 
+    build:
       context: .
       dockerfile: docker/postgres.dockerfile
     container_name: dev_marshmello_postgres
@@ -36,6 +37,22 @@ services:
       - "default"
     volumes:
       -  postgres_data:/var/lib/postgresql/data
+
+  database_test:
+    build:
+      context: .
+      dockerfile: docker/postgres.dockerfile
+    container_name: test_marshmello_postgres
+    image: marshmello/postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: todo
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: marshmello
+    networks:
+      - "default"
+    volumes:
+      -  postgres_test_data:/var/lib/postgresql/data
 
   adminer:
     container_name: dev_marshmello_adminer
@@ -70,3 +87,5 @@ networks:
 volumes:
   postgres_data:
     name: dev_vol_marshmello_pg
+  postgres_test_data:
+    name: test_vol_marshmello_pg
