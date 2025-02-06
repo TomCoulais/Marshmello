@@ -5,11 +5,11 @@ import Project from '#models/project';
 import Status from '#models/status';
 import User from '#models/user';
 
-test.group('Status', (group) => {
+test.group('Statuses', (group) => {
 	group.each.setup(() => testUtils.db().withGlobalTransaction());
 
 	test('it should return the list of statuses for a project', async ({ client }) => {
-		const user = await User.create({ username: 'test1234', password: 'test1234' });
+		const user = await User.create({ username: 'test35', password: 'test1234' });
 		const project = await Project.create({ name: 'mon projet', userId: user.id });
 
 		const response = await client.get(`/statuses/list/${project.uuid}`).loginAs(user);
@@ -19,7 +19,7 @@ test.group('Status', (group) => {
 	});
 
 	test('it should create a new status', async ({ client }) => {
-		const user = await User.create({ username: 'test1234', password: 'test1234' });
+		const user = await User.create({ username: 'test36', password: 'test1234' });
 		const project = await Project.create({ name: 'mon projet', userId: user.id });
 
 		const baseStatus = {
@@ -50,7 +50,7 @@ test.group('Status', (group) => {
 			order: 1,
 		};
 
-		const user = await User.create({ username: 'test1234', password: 'test1234' });
+		const user = await User.create({ username: 'test37', password: 'test1234' });
 		const project = await Project.create({ name: 'mon projet', userId: user.id });
 		const status = await Status.create({
 			name: baseStatus.name,
@@ -75,7 +75,7 @@ test.group('Status', (group) => {
 			order: 1,
 		};
 
-		const user = await User.create({ username: 'test1234', password: 'test1234' });
+		const user = await User.create({ username: 'test38', password: 'test1234' });
 		const project = await Project.create({ name: 'mon projet', userId: user.id });
 		const status = await Status.create({
 			name: baseStatus.name,
@@ -105,7 +105,7 @@ test.group('Status', (group) => {
 			order: 1,
 		};
 
-		const user = await User.create({ username: 'test1234', password: 'test1234' });
+		const user = await User.create({ username: 'test39', password: 'test1234' });
 		const project = await Project.create({ name: 'mon projet', userId: user.id });
 		const status = await Status.create({
 			name: baseStatus.name,

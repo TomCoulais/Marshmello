@@ -32,7 +32,7 @@ export default class Todo extends BaseModel {
   declare projectId: number
 
   @column()
-  declare tagId: number | null 
+  declare tagId: number | null
 
   @belongsTo(() => Tag)
   declare tag: BelongsTo<typeof Tag>

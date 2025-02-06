@@ -1,4 +1,4 @@
-import {BaseSchema} from '@adonisjs/lucid/schema'
+import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class TagTodo extends BaseSchema {
   protected tableName = 'tags'
@@ -8,10 +8,9 @@ export default class TagTodo extends BaseSchema {
       table.increments('id').primary()
       table.uuid('uuid').notNullable().unique()
       table.string('name').nullable()
-      table.integer('todos_id').notNullable()
+      table.integer('todo_id').nullable().unsigned().references('id').inTable('todos') // Correct foreign key definition
       table.timestamp('created_at').notNullable().defaultTo(this.now())
       table.timestamp('updated_at').notNullable().defaultTo(this.now())
-      table.foreign('todos_id').references('todos.id').onDelete('set null')
     })
   }
 

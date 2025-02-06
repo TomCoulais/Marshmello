@@ -4,11 +4,11 @@ import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 export const createSchema = vine.compile(
   vine.object({
     name: vine.string().minLength(3).maxLength(30),
-    description: vine.string().nullable(),
+    description: vine.string().nullable().optional(),
     todoId: vine.number().exists(async (_, value) => {
       const row = await Todo.find(value)
       return row !== null
-    })
+    }).optional()
   })
 )
 
@@ -20,11 +20,11 @@ createSchema.messagesProvider = new SimpleMessagesProvider({
 export const updateSchema = vine.compile(
   vine.object({
     name: vine.string().minLength(3).maxLength(255),
-    description: vine.string().nullable(),
+    description: vine.string().nullable().optional(),
     todoId: vine.number().exists(async (_, value) => {
       const row = await Todo.find(value)
       return row !== null
-    })
+    }).optional()
   })
 )
 

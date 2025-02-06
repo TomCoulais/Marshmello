@@ -9,7 +9,7 @@ export const createSchema = vine.compile(
       const row = await Status.find(value)
       return row !== null
     }),
-    tag: vine.string().nullable() 
+    tag: vine.string().nullable()
   })
 )
 

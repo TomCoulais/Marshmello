@@ -14,9 +14,9 @@ export default class TagController {
     }
 
     async show({ params, response }: HttpContext) {
-    const tags = await Tag.findByOrFail({ uuid: params.uuid })
+      const tags = await Tag.findByOrFail({ uuid: params.uuid })
 
-    return response.json(tags)
+      return response.json(tags)
     }
 
     async create({ request, auth, response }: HttpContext) {
@@ -35,11 +35,20 @@ export default class TagController {
       if (auth.use('web').isLoggedOut) {
         return response.unauthorized();
       }
-      const tags = await Tag.findByOrFail({ uuid: params.uuid });
-      const payload = await request.validateUsing(updateSchema);
 
-      await tags.merge(payload).save();
-      return response.json(tags);
+      try {
+        const tags = await Tag.findByOrFail({ uuid: params.uuid });
+        const payload = await request.validateUsing(updateSchema);
+
+        await tags.merge(payload).save();
+        return response.json(tags);
+      } catch (error) {
+        console.log(error);
+        return response.status(422).json({
+          message: 'Validation error',
+          errors: error.messages, 
+        });
+      }
     }
 
     async delete({ auth, params, response }: HttpContext) {
