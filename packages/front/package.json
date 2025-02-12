@@ -35,7 +35,6 @@
 		"@types/react": "^19.0.7",
 		"@types/react-dom": "^19.0.3",
 		"@typescript-eslint/parser": "^8.21.0",
-		"@unocss/eslint-config": "^65.4.3",
 		"@vitejs/plugin-react-swc": "^3.7.2",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
