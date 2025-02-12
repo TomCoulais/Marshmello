@@ -18,6 +18,7 @@ import eslintReact from 'eslint-plugin-react';
 import eslintReactRefresh from 'eslint-plugin-react-refresh';
 import eslintQuery from '@tanstack/eslint-plugin-query';
 import eslintPerfectionist from 'eslint-plugin-perfectionist';
+import eslintStorybook from '@storybook/eslint-config-storybook';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -39,6 +40,7 @@ const react = [
 	},
 ];
 
+const storybook = [...eslintStorybook.configs['flat/recommended']];
 
 /** @see https://github.com/eslint-community/eslint-plugin-eslint-comments */
 const comments = [eslintComments.recommended];
@@ -344,7 +346,7 @@ export default [
 	...promise,
 	...prettier,
 	...react,
-	...unoCSS,
+	...storybook,
 	/* Specific for ESLint itself. */
 	{
 		files: ['eslint.config.js'],
