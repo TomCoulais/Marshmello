@@ -8,7 +8,7 @@ export default class TagTodo extends BaseSchema {
       table.increments('id').primary()
       table.uuid('uuid').notNullable().unique()
       table.string('name').nullable()
-      table.integer('todo_id').nullable().unsigned().references('id').inTable('todos') // Correct foreign key definition
+      table.integer('todo_id').nullable().unsigned().references('id').inTable('todos') 
       table.timestamp('created_at').notNullable().defaultTo(this.now())
       table.timestamp('updated_at').notNullable().defaultTo(this.now())
     })
